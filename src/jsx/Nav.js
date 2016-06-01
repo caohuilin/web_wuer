@@ -3,11 +3,11 @@ const Nav = React.createClass({
         return(
             <nav className="mainMenu">
                 <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">点点滴滴</a></li>
-                    <li><a href="">荣誉墙</a></li>
-                    <li><a href="">小伙伴</a></li>
-                    <li><a href="">畅所欲言</a></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/story">点点滴滴</Link></li>
+                    <li><Link to="/prize">荣誉墙</Link></li>
+                    <li><Link to="/partner">小伙伴</Link></li>
+                    <li><Link to="say">畅所欲言</Link></li>
                 </ul>
             </nav>
         )
