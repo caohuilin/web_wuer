@@ -15,15 +15,11 @@ function clamp(n, min, max) {
     return Math.max(Math.min(n, max), min);
 }
 
-const allColors = [
-    '#EF767A', '#456990', '#49BEAA', '#49DCB1', '#EEB868', '#EF767A', '#456990',
-    '#49BEAA', '#49DCB1', '#EEB868', '#EF767A'
-];
-const [count, width, height] = [11, 70, 90];
+const [count, width, height] = [30, 140, 140];
 // indexed by visual position
 const layout = range(count).map(n => {
-    const row = Math.floor(n / 3);
-    const col = n % 3;
+    const row = Math.floor(n / 5);
+    const col = n % 5;
     return [width * col, height * row];
 });
 
@@ -34,8 +30,17 @@ const Demo = React.createClass({
             delta: [0, 0], // difference between mouse and circle pos, for dragging
             lastPress: null, // key of the last pressed component
             isPressed: false,
-            order: range(count) // index: visual position. value: component key/id
+            order: range(count), // index: visual position. value: component key/id
+            introduceWho: 0,
+            introduceIs: false
         };
+    },
+    introduceShow(key){
+        this.setState({introduceWho: key, introduceIs: true})
+    },
+    introduceHide(){
+        this.setState({introduceIs: false})
+
     },
 
     componentDidMount() {
@@ -59,10 +64,10 @@ const Demo = React.createClass({
         if (isPressed) {
             const mouse = [pageX - dx, pageY - dy];
             const col = clamp(Math.floor(mouse[0] / width), 0, 2);
-            const row = clamp(Math.floor(mouse[1] / height), 0, Math.floor(count / 3));
-            const index = row * 3 + col;
+            const row = clamp(Math.floor(mouse[1] / height), 0, Math.floor(count / 5));
+            const index = row * 5 + col;
             const newOrder = reinsert(order, order.indexOf(lastPress), index);
-            this.setState({mouse: mouse, order: newOrder});
+            this.setState({mouse: mouse, order: newOrder,introduceIs: false});
         }
     },
 
@@ -71,7 +76,8 @@ const Demo = React.createClass({
             lastPress: key,
             isPressed: true,
             delta: [pageX - pressX, pageY - pressY],
-            mouse: [pressX, pressY]
+            mouse: [pressX, pressY],
+            introduceIs: false
         });
     },
 
@@ -87,14 +93,18 @@ const Demo = React.createClass({
                     let style;
                     let x;
                     let y;
+                    let introduce = null;
                     const visualPosition = order.indexOf(key);
+                    if(key === this.state.introduceWho){
+                        introduce = <Introduce introduceWho={this.state.introduceWho} introduceIs={this.state.introduceIs}/>;
+                    }
                     if (key === lastPress && isPressed) {
                         [x, y] = mouse;
                         style = {
                             translateX: x,
                             translateY: y,
                             scale: spring(1.2, springSetting1),
-                            boxShadow: spring((x - (3 * width - 50) / 2) / 15, springSetting1),
+                            boxShadow: spring((x - (5 * width - 50) / 2) / 15 / 3, springSetting1)
                         };
                     } else {
                         [x, y] = layout[visualPosition];
@@ -102,24 +112,29 @@ const Demo = React.createClass({
                             translateX: spring(x, springSetting2),
                             translateY: spring(y, springSetting2),
                             scale: spring(1, springSetting1),
-                            boxShadow: spring((x - (3 * width - 50) / 2) / 15, springSetting1),
+                            boxShadow: spring((x - (5 * width - 50) / 2) / 15 / 3, springSetting1)
                         };
                     }
                     return (
                         <Motion key={key} style={style}>
                             {({translateX, translateY, scale, boxShadow}) =>
                                 <div
+                                    onMouseOver={this.introduceShow.bind(null,key)}
+                                    onMouseOut={this.introduceHide}
                                     onMouseDown={this.handleMouseDown.bind(null, key, [x, y])}
                                     onTouchStart={this.handleTouchStart.bind(null, key, [x, y])}
                                     className="demo2-ball"
                                     style={{
-                    backgroundColor: allColors[key],
+                    background: `url('./public/img/head${key}.jpg') center no-repeat`,
                     WebkitTransform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
                     transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
                     zIndex: key === lastPress ? 99 : visualPosition,
                     boxShadow: `${boxShadow}px 5px 5px rgba(0,0,0,0.5)`,
                   }}
-                                />
+                                >
+                                    {introduce}
+                                </div>
+
                             }
                         </Motion>
                     );
@@ -129,13 +144,28 @@ const Demo = React.createClass({
     }
 });
 
-
+const Introduce = React.createClass({
+    render(){
+        var user = Users[this.props.introduceWho];
+        //if(!this.props.introduceIs) return null;
+        return (
+            <div className="introduce slideInLeft animated" style={css_display(this.props.introduceIs)}>
+                <div className="name">{user.name}</div>
+                <div className="addr"><i className="fa fa-map-marker" />{user.addr}</div>
+                <div className="phone"><i className="fa fa-phone" />{user.phone}</div>
+                <div className="phone "><i className="fa fa-qq" />{user.qq}</div>
+            </div>
+        )
+    }
+});
 
 
 const Section4 = React.createClass({
     render(){
         return (
-            <div className="section4"><Demo /></div>
+            <div className="section4">
+                <Demo />
+            </div>
         )
     }
 });
