@@ -1,0 +1,123 @@
+@charset "UTF-8";
+@import "less/z";
+@import "less/css3";
+
+@font-face {
+  font-family: 'school';
+  src: url(../lib/marguerite.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'wuer';
+  src: url(../lib/Bellerose.ttf) format('truetype');
+}
+
+.reset();
+
+body {
+  font-family: Helvetica, Tahoma, Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+  display: block;
+}
+
+.header {
+  display: flex;
+  font-size: 30px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 50px;
+  color: #444;
+  .menu {
+    width: 16px;
+  }
+  .logo {
+    .school {
+      font-family: 'school';
+    }
+    .wuer {
+      font-family: "school";
+      font-size: 30px;
+      padding-left: 40px;
+    }
+    flex: 1;
+    text-align: center;
+  }
+  .user {
+    width: 30px;
+  }
+}
+
+.mainMenu {
+  border: 1px solid #f0f0f0;
+  ul {
+    text-align: center;
+    margin: 0;
+    li {
+      font-size: 14px;
+      display: inline-block;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin:0 20px;
+      a {
+        height: 50px;
+        line-height: 50px;
+        padding-left: 15px;
+        padding-right: 15px;
+        display: block;
+        float: left;
+        color: #000;
+        &:after {
+          content: "";
+          position: absolute;
+          left: 40%;
+          bottom: 0;
+          border-width: 0 10px 10px;
+          border-style: solid;
+          border-color: transparent transparent #000;
+          width: 0;
+          z-index: 999;
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
+.content{
+  width:80%;
+  margin:0 auto;
+  .section1{
+    background: url("../img/aa.jpg") top center no-repeat;
+    background-size: cover;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 100;
+    .view-content{
+      width: 1020px;
+      color: white;
+      margin: 0 auto;
+      padding: 12em 2em;
+      h1{
+        color: white;
+        font-size: 3em;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        text-align: center;
+        &:after{
+          content: " ";
+          border: solid 1px #ffffff;
+          display: block;
+          width: 1em;
+          margin: 0.6em auto auto auto;
+        }
+      }
+      .introduce{
+        width: 60%;
+        margin: 2.5em auto;
+        p{
+          font-size: 1.5em;
+        }
+      }
+    }
+  }
+}
