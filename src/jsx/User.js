@@ -1,100 +1,304 @@
-const User = React.createClass({
-    propTypes: {
-        userNoteId: React.PropTypes.string.isRequired,
-        users: propTypesUser
+const Users = [
+    {
+        id: "1050110",
+        name: "余庆春",
+        addr: "湖北省鄂州市鄂城区",
+        addNow: "湖南湘潭",
+        phone: "13017328124",
+        qq: "35068431"
     },
-    getInitialState () {
-        return {
-            note: [],
-            noteShow: -1,
-            allComShow: -1,
-            addComShow: false,
-            addComSuccess: false
-        };
+    {
+        id: "1105030125",
+        name: "杨翔",
+        addr: "湖南省邵阳市隆回县",
+        addNow: "北京市",
+        phone: "18810605211",
+        qq: "2859258798"
     },
-    componentWillMount () {
-        $.get(API_HOST + "/posts?uid=" + this.props.userNoteId, (notes)=> {
-            this.setState({note: notes.data});
-        });
+    {
+        id: "1105020217",
+        name: "张定涛",
+        addr: "湖南省邵阳市五峰铺",
+        addNow: "广东省",
+        phone: "13711882863",
+        qq: "2385419998"
     },
-    componentWillReceiveProps(nextProps){
-        $.get(API_HOST + "/posts?uid=" + nextProps.userNoteId, (notes)=> {
-            this.setState({note: notes.data});
-        });
+    {
+        id: "1206010208",
+        name: "李尚卿",
+        addr: "辽宁省辽阳市白塔区",
+        addNow: "湖南湘潭",
+        phone: "15574487376",
+        qq: "184633316"
     },
-    setNoteShow (id) {
-        if (id === this.state.noteShow) {
-            id = -1;
-        }
-        this.setState({noteShow: id});
+    {
+        id: "1305040201",
+        name: "唐汉英",
+        addr: "海南省万宁市乐东县",
+        addNow: "北京",
+        phone: "18973247748",
+        qq: "461481838"
     },
-    viewAllComment (id) {
-        if (id === this.state.allComShow) {
-            id = -1;
-        }
-        this.setState({allComShow: id});
+
+    {
+        id: "1305040202",
+        name: "杨锦驹",
+        addr: "广东省河源市和平县",
+        addNow: "湖南湘潭",
+        phone: "15197293299",
+        qq: "1010611232"
     },
-    addCom () {
-        this.setState({addComShow: true});
+
+    {
+        id: "1305040203",
+        name: "吴彦辉",
+        addr: "福建省福州市连江县",
+        addNow: "湖南湘潭",
+        phone: "13047224957",
+        qq: "625405645"
     },
-    closeAdd () {
-        this.setState({addComShow: false});
+
+    {
+        id: "1305040204",
+        name: "大王超",
+        addr: "河北省邢台市桥西区",
+        addNow: "湖南湘潭",
+        phone: "15574477859",
+        qq: "1814813319;"
     },
-    addSuccess () {
-        this.setState({addComShow: false});
-        setTimeout(()=> {
-            this.setState({addComSuccess: true});
-            setTimeout(()=> {
-                this.setState({addComSuccess: false});
-            }, 3000);
-        }, 1000);
+
+    {
+        id: "1305040205",
+        name: "刘兆泽",
+        addr: "重庆市秀山县",
+        addNow: "湖南湘潭",
+        phone: "18573207797",
+        qq: "1059641572"
     },
-    render () {
-        var user = this.props.users.find((user)=>user.id === this.props.userNoteId);
-        if (!user) {
-            return null;
-        }
-        var note_list = this.state.note.filter((note)=>note.user_id === user.id).map((note, id)=>(
-                <div key={id}>
-                    <li onClick={this.setNoteShow.bind(null,id)}>
-                        {note.day}
-                    </li>
-                    <div className="notess">
-                        <div className="mo">心情：<img src={mood_img_src(note.mood)} alt=""/></div>
-                        <div className="rizhi">日志：
-                            <div className="con">
-                                <span dangerouslySetInnerHTML={{__html:marked(note.content||'')}}></span>
-                            </div>
-                        </div>
-                        <div className="comment">
-                            <a onClick={this.viewAllComment.bind(null,id)}>查看所有评论</a>
-                            <div className="all_com" style={css_display(this.state.noteShow===id)}>暂无评论</div>
-                        </div>
-                        <div className="add_comment"><a onClick={this.addCom}>添加评论</a></div>
-                        <div className="add_ssuccess" style={css_display(this.state.addComSuccess)}>添加成功</div>
-                        <div id="mask" onClick={this.closeAdd} style={css_display(this.state.addComShow)}></div>
-                        <div className="add_com_text" style={css_display(this.state.addComShow)}>
-                            <div className="title">
-                                我的评论
-                            </div>
-                            <div className="icon" onClick={this.closeAdd}></div>
-                            <textarea name="name"></textarea>
-                            <button className="btn btn-primary" type="button" name="button"
-                                    onClick={this.addSuccess}>确定
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )
-        );
-        return (
-            <div className="rightArea">
-                <div className="name">{user.real_name}</div>
-                <div className="de">--{user.department}</div>
-                <ul className="note_nav">
-                    {note_list}
-                </ul>
-            </div>
-        );
+    {
+        id: "1305040206",
+        name: "赵明星",
+        addr: "河南省新乡市牧野区",
+        addNow: "湖南湘潭",
+        phone: "18707325310",
+        qq: "1021008538"
+    },
+
+    {
+        id: "1305040207",
+        name: "华翔",
+        addr: "安徽省安庆桐城市",
+        addNow: "湖南湘潭",
+        phone: "15197160231",
+        qq: "727236249"
+    },
+
+    {
+        id: "1305040208",
+        name: "晏强",
+        addr: "湖南省岳阳市岳阳县",
+        addNow: "湖南湘潭",
+        phone: "15197256215",
+        qq: "756567648"
+    },
+
+    {
+        id: "1305040209",
+        name: "小王超",
+        addr: "湖南省湘乡市",
+        addNow: "湖南湘潭",
+        phone: "15197191748",
+        qq: "296453402"
+    },
+
+    {
+        id: "1305040210",
+        name: "欧天赐",
+        addr: "湖南省益阳市南县",
+        addNow: "湖南湘潭",
+        phone: "13017147872",
+        qq: "1057409036"
+    },
+
+    {
+        id: "1305040211",
+        name: "谭超",
+        addr: "湖南省常德市武陵区",
+        addNow: "湖南湘潭",
+        phone: "15573291349",
+        qq: "798168174"
+    },
+
+
+    {
+        id: "1305040212",
+        name: "李潞峰",
+        addr: "湖南省长沙市宁乡县",
+        addNow: "湖南湘潭",
+        phone: "15673267564",
+        qq: "l755842700l"
+    },
+
+    {
+        id: "1305040213",
+        name: "刘泽欢",
+        addr: "湖南省娄底市双峰县",
+        addNow: "湖南湘潭",
+        phone: "15107322623",
+        qq: "935086037"
+    },
+
+    {
+        id: "1305040214",
+        name: "邓玉喜",
+        addr: "湖南省衡阳市耒阳县",
+        addNow: "湖南湘潭",
+        phone: "13762425822",
+        qq: "1024520807"
+    },
+
+    {
+        id: "1305040215",
+        name: "楚惟政",
+        addr: "湖南省岳阳市汨罗市",
+        addNow: "湖南湘潭",
+        phone: "15173267096",
+        qq: "702072463"
+    },
+
+    {
+        id: "1305040216",
+        name: "钟佩齐",
+        addr: "湖南省常德市桃源县",
+        addNow: "湖南湘潭",
+        phone: "15173267195",
+        qq: "250162363"
+    },
+
+    {
+        id: "1305040217",
+        name: "陈庆生",
+        addr: "甘肃省定西市岷县",
+        addNow: "湖南湘潭",
+        phone: "13789317233",
+        qq: "1399368351"
+    },
+
+    {
+        id: "1305040218",
+        name: "郭定海",
+        addr: "浙江省温州市洞头县",
+        addNow: "湖南湘潭",
+        phone: "15197209862",
+        qq: "1078300829"
+    },
+
+    {
+        id: "1305040219",
+        name: "赵郑瑞",
+        addr: "河北省保定市曲阳县",
+        addNow: "湖南湘潭",
+        phone: "15197282610",
+        qq: "2419251049"
+    },
+
+
+    {
+        id: "1305040220",
+        name: "米雪碧",
+        addr: "重庆市潼南县",
+        addNow: "湖南湘潭",
+        phone: "15173267135",
+        qq: "657403288;"
+    },
+
+
+    {
+        id: "1305040221",
+        name: "徐雪梅",
+        addr: "河南省南阳市桐柏县",
+        addNow: "河南郑州",
+        phone: "15898519690",
+        qq: "970231732"
+    },
+
+
+    {
+        id: "1305040222",
+        name: "马雯颖",
+        addr: "湖南省湘潭市雨湖区",
+        addNow: "湖南湘潭",
+        phone: "18390218071",
+        qq: "995344154"
+    },
+
+
+    {
+        id: "1305040223",
+        name: "潘蕾",
+        addr: "湖南省岳阳市岳阳县",
+        addNow: "湖南湘潭",
+        phone: "15197228706",
+        qq: "941399127"
+    },
+
+
+    {
+        id: "1305040224",
+        name: "邹广花",
+        addr: "湖南省衡阳市衡阳县",
+        addNow: "湖南湘潭",
+        phone: "15173266501",
+        qq: "1328903109"
+    },
+
+
+    {
+        id: "1305040225",
+        name: "王朗",
+        addr: "湖南省娄底市双峰县",
+        addNow: "湖南湘潭",
+        phone: "13789312187",
+        qq: "1348151288"
+    },
+
+
+    {
+        id: "1305040226",
+        name: "曹慧琳",
+        addr: "山西省晋中市介休市",
+        addNow: "上海市",
+        phone: "15173266529",
+        qq: "1057275848"
+    },
+
+
+    {
+        id: "1305040227",
+        name: "王莉",
+        addr: "湖南省张家界市慈利县",
+        addNow: "湖南湘潭",
+        phone: "15197153223",
+        qq: "1441897267"
+    },
+
+
+    {
+        id: "1305040228",
+        name: "汪帆",
+        addr: "青海省海东市乐都县",
+        addNow: "湖南湘潭",
+        phone: "18073218551",
+        qq: "398434639"
+    },
+
+
+    {
+        id: "1306040133",
+        name: "唐琳雯",
+        addr: "江苏省无锡市惠山区",
+        addNow: "湖南湘潭",
+        phone: "18068351581",
+        qq: "2768351581"
     }
-});
+];

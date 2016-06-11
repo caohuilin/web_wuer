@@ -15,7 +15,7 @@ function clamp(n, min, max) {
     return Math.max(Math.min(n, max), min);
 }
 
-const [count, width, height] = [30, 140, 140];
+const [count, width, height] = [33, 140, 140];
 // indexed by visual position
 const layout = range(count).map(n => {
     const row = Math.floor(n / 5);
@@ -95,6 +95,7 @@ const Demo = React.createClass({
                     let y;
                     let introduce = null;
                     const visualPosition = order.indexOf(key);
+                    console.log(visualPosition);
                     if(key === this.state.introduceWho){
                         introduce = <Introduce introduceWho={this.state.introduceWho} introduceIs={this.state.introduceIs}/>;
                     }
@@ -126,6 +127,7 @@ const Demo = React.createClass({
                                     className="demo2-ball"
                                     style={{
                     background: `url('./public/img/head${key}.jpg') center no-repeat`,
+                    backgroundSize:`cover`,
                     WebkitTransform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
                     transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
                     zIndex: key === lastPress ? 99 : visualPosition,
@@ -134,7 +136,6 @@ const Demo = React.createClass({
                                 >
                                     {introduce}
                                 </div>
-
                             }
                         </Motion>
                     );
@@ -152,8 +153,9 @@ const Introduce = React.createClass({
             <div className="introduce slideInLeft animated" style={css_display(this.props.introduceIs)}>
                 <div className="name">{user.name}</div>
                 <div className="addr"><i className="fa fa-map-marker" />{user.addr}</div>
+                <div className="addrNow"><i className="fa fa-location-arrow" />{user.addNow}</div>
                 <div className="phone"><i className="fa fa-phone" />{user.phone}</div>
-                <div className="phone "><i className="fa fa-qq" />{user.qq}</div>
+                <div className="qq"><i className="fa fa-qq" />{user.qq}</div>
             </div>
         )
     }
