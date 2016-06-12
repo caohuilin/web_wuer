@@ -32,11 +32,12 @@ const Demo = React.createClass({
             isPressed: false,
             order: range(count), // index: visual position. value: component key/id
             introduceWho: 0,
-            introduceIs: false
+            introduceIs: false,
+            position:[0,0]
         };
     },
-    introduceShow(key){
-        this.setState({introduceWho: key, introduceIs: true})
+    introduceShow(key,x,y){
+        this.setState({introduceWho: key, introduceIs: true,position:[x,y]})
     },
     introduceHide(){
         this.setState({introduceIs: false})
@@ -95,9 +96,9 @@ const Demo = React.createClass({
                     let y;
                     let introduce = null;
                     const visualPosition = order.indexOf(key);
-                    if(key === this.state.introduceWho){
-                        introduce = <Introduce introduceWho={this.state.introduceWho} introduceIs={this.state.introduceIs}/>;
-                    }
+                    // if(key === this.state.introduceWho){
+                    //     introduce = <Introduce introduceWho={this.state.introduceWho} introduceIs={this.state.introduceIs}/>;
+                    // }
                     if (key === lastPress && isPressed) {
                         [x, y] = mouse;
                         style = {
@@ -119,7 +120,7 @@ const Demo = React.createClass({
                         <Motion key={key} style={style}>
                             {({translateX, translateY, scale, boxShadow}) =>
                                 <div
-                                    onMouseOver={this.introduceShow.bind(null,key)}
+                                    onMouseOver={this.introduceShow.bind(null,key,translateX,translateY)}
                                     onMouseOut={this.introduceHide}
                                     onMouseDown={this.handleMouseDown.bind(null, key, [x, y])}
                                     onTouchStart={this.handleTouchStart.bind(null, key, [x, y])}
@@ -133,12 +134,12 @@ const Demo = React.createClass({
                     boxShadow: `${boxShadow}px 5px 5px rgba(0,0,0,0.5)`
                   }}
                                 >
-                                    {introduce}
                                 </div>
                             }
                         </Motion>
                     );
                 })}
+                <Introduce introduceWho={this.state.introduceWho} introduceIs={this.state.introduceIs} position={this.state.position}/>
             </div>
         );
     }
@@ -147,9 +148,10 @@ const Demo = React.createClass({
 const Introduce = React.createClass({
     render(){
         var user = Users[this.props.introduceWho];
+        console.log(this.props.introduceIs);
         //if(!this.props.introduceIs) return null;
         return (
-            <div className="introduce slideInLeft animated" style={css_display(this.props.introduceIs)}>
+            <div className="introduce slideInLeft animated" style={{left:this.props.position[0]-270,top:this.props.position[1]-20,display:this.props.introduceIs?"block":"none"}}>
                 <div className="name">{user.name}</div>
                 <div className="addr"><i className="fa fa-map-marker" />{user.addr}</div>
                 <div className="addrNow"><i className="fa fa-location-arrow" />{user.addNow}</div>
