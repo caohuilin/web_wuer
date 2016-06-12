@@ -18,6 +18,47 @@ body {
   font-family: Helvetica, Tahoma, Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
   display: block;
 }
+.login{
+  width:400px;
+  height: 400*0.618px;
+  border:solid 1px #e1e1e1;
+  border-radius: 5px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  padding:20px;
+  h2{
+    font-size: 24px;
+    text-align: center;
+    font-family: "wuer";
+    color: #3c3c3c;
+  }
+  form{
+    position: relative;
+    margin-top: 50px;
+    .loginWrong{
+      position: absolute;
+      color: #ff0000;
+      top:-34px;
+      left:50%;
+      transform: translate(-50%,0);
+    }
+    label{
+      margin-right: 10px;
+      font-size: 16px;
+    }
+    input{
+      display: inline-block;
+      width:310px;
+    }
+  }
+  button{
+    float: right;
+  }
+
+
+}
 
 .header {
   display: flex;
