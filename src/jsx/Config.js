@@ -13,3 +13,8 @@ const propTypesUser = React.PropTypes.arrayOf(React.PropTypes.shape({
     updated_at: React.PropTypes.string.isRequired
 }));
 const propTypeDepartment = React.PropTypes.arrayOf(React.PropTypes.string.isRequired);
+
+
+
+const wilddog = new Wilddog('https://wuerweb.wilddogio.com/');
+const userOnline = wilddog.child('userOnline');

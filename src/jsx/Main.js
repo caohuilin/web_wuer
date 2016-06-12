@@ -1,16 +1,21 @@
 const Main = React.createClass({
-    contextTypes: {
-        router: React.PropTypes.object.isRequired
+    getInitialState(){
+      return {user:""}
+    },
+    changeUser(user){
+      this.setState({user:user})
     },
     render(){
-        return (
-            <div className="main">
-                <Header />
-                <Nav />
-                <Content path={this.props.route.path} />
-            </div>
-        )
+        if(this.state.user === ""){
+            return <Login changeUser={this.changeUser}/>
+        }else {
+            return (
+                <div className="main">
+                    <Header user={this.state.user}/>
+                    <Nav />
+                    <Content path={this.props.route.path}/>
+                </div>
+            )
+        }
     }
 });
-
-

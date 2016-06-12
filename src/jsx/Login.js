@@ -12,8 +12,9 @@ const Login = React.createClass({
             if (user.id === this.state.id) {
                 console.log("登录成功");
                 loginSuccess = true;
+                userOnline.push({name: user.name});
+                this.props.changeUser(user);
                 this.setState({id:"",successLogin:true});
-                this.props.history.push("/home");
             }
         });
         if(!loginSuccess){

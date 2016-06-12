@@ -1,6 +1,6 @@
 ReactDOM.render((
     <Router>
-        <Route path="/" component={Login} />
+        <Route path="/" component={Main} />
         <Route path="/home" component={Main} />
         <Route path="/story" component={Main} />
         <Route path="/prize" component={Main} />

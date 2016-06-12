@@ -3,7 +3,7 @@ const Content = React.createClass({
     render () {
         let con = null;
         switch (this.props.path) {
-            case "/home" :
+            case "/" :
                 con = <Section1 />;
                 break;
             case "/story" :
