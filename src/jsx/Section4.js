@@ -95,7 +95,6 @@ const Demo = React.createClass({
                     let y;
                     let introduce = null;
                     const visualPosition = order.indexOf(key);
-                    console.log(visualPosition);
                     if(key === this.state.introduceWho){
                         introduce = <Introduce introduceWho={this.state.introduceWho} introduceIs={this.state.introduceIs}/>;
                     }
@@ -131,7 +130,7 @@ const Demo = React.createClass({
                     WebkitTransform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
                     transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
                     zIndex: key === lastPress ? 99 : visualPosition,
-                    boxShadow: `${boxShadow}px 5px 5px rgba(0,0,0,0.5)`,
+                    boxShadow: `${boxShadow}px 5px 5px rgba(0,0,0,0.5)`
                   }}
                                 >
                                     {introduce}
