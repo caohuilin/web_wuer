@@ -16,7 +16,7 @@ const Content = React.createClass({
                 con = <Section4 />;
                 break;
             case "/say" :
-                con = <Section5 />;
+                con = <Section5 user={this.props.user}/>;
                 break;
         }
         return (

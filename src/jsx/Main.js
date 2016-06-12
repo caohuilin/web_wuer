@@ -13,7 +13,7 @@ const Main = React.createClass({
                 <div className="main">
                     <Header user={this.state.user}/>
                     <Nav />
-                    <Content path={this.props.route.path}/>
+                    <Content path={this.props.route.path} user={this.state.user}/>
                 </div>
             )
         }

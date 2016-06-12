@@ -11,8 +11,9 @@ const Login = React.createClass({
         Users.map((user, i)=> {
             if (user.id === this.state.id) {
                 console.log("登录成功");
+                const User = userOnline.child(user.name);
                 loginSuccess = true;
-                userOnline.push({name: user.name});
+                User.set(Wilddog.ServerValue.TIMESTAMP);
                 this.props.changeUser(user);
                 this.setState({id:"",successLogin:true});
             }
