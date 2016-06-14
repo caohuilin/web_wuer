@@ -1,34 +1,34 @@
 const Prize = [
     {
         name:"2013年五四红旗团支部",
-        src:"../../public/img/prize-01.jpg"
+        src:"./public/img/prize-01.jpg"
     },
     {
         name:"2014-2015年度模范班集体",
-        src:"../../public/img/prize_02.jpg"
+        src:"./public/img/prize_02.jpg"
     },
     {
         name:"2013年拔河比赛优秀个人奖",
-        src:"../../public/img/prize_03.jpg"
+        src:"./public/img/prize_03.jpg"
     },
     {
         name:"2014-2015年度百优宿舍",
-        src:"../../public/img/prize-01.jpg"
+        src:"./public/img/prize-01.jpg"
     },
     {
         name:"2013-2014年度百优宿舍",
-        src:"../../public/img/prize-02.jpg"
+        src:"./public/img/prize-02.jpg"
     },
     {
         name:"2014-2015年度文明宿舍",
-        src:"../../public/img/prize-03.jpg"
+        src:"./public/img/prize-03.jpg"
     },
     {
         name:"第十届宿舍文化节学习型宿舍",
-        src:"../../public/img/prize-04.jpg"
+        src:"./public/img/prize-04.jpg"
     },
     {
         name:"第八届宿舍文化节雅室设计最具特色奖",
-        src:"../../public/img/prize-05.jpg"
+        src:"./public/img/prize-05.jpg"
     },
 ];

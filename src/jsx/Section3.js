@@ -10,7 +10,7 @@ const Section3 = React.createClass({
         });
         return (
             <section className="section3">
-                <div className="logo"><img src="../../public/img/logo_prize.png" alt=""/></div>
+                <div className="logo"><img src="./public/img/logo_prize.png" alt=""/></div>
                 <ul className="prize">
                     {list}
                 </ul>
