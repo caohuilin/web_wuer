@@ -76,7 +76,7 @@ const Section5 = React.createClass({
             return (
                 <li>
                     <div className="head">
-                        <div><span className="user">{t.name}</span>发起话题:{t.topicalTheme}</div>
+                        <div><span className="user">{t.userName}</span>发起话题:{t.topicalTheme}</div>
                         {t.topical}
                     </div>
                     <CommentModule topical={t} user={this.props.user}/>
