@@ -21,7 +21,7 @@ gulp.task('less', function () {
 });
 
 gulp.task('jsx', function () {
-    return gulp.src(["./src/jsx/Util.js","./src/jsx/Config.js","./src/jsx/Prize.js","./src/jsx/User.js","./src/jsx/Login.js","./src/jsx/Section5.js","./src/jsx/Section4.js","./src/jsx/Section3.js","./src/jsx/Section2.js","./src/jsx/Section1.js","./src/jsx/Content.js","./src/jsx/Nav.js","./src/jsx/Header.js","./src/jsx/Main.js","./src/jsx/Router.js"])
+    return gulp.src(["./src/jsx/Util.js","./src/jsx/Config.js","./src/jsx/Story.js","./src/jsx/Prize.js","./src/jsx/User.js","./src/jsx/Login.js","./src/jsx/Section5.js","./src/jsx/Section4.js","./src/jsx/Section3.js","./src/jsx/Section2.js","./src/jsx/Section1.js","./src/jsx/Content.js","./src/jsx/Nav.js","./src/jsx/Header.js","./src/jsx/Main.js","./src/jsx/Router.js"])
         .pipe(react())
         .on('error', function(err){
             console.log(err);
