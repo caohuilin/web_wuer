@@ -7,6 +7,7 @@ var react = require('gulp-react');
 var concat = require('gulp-concat');
 var clean = require('gulp-clean');
 var babel = require('gulp-babel');
+var prefix = require("gulp-autoprefixer");
 var runSequence = require('run-sequence');
 
 gulp.task('default', function () {
@@ -18,6 +19,7 @@ gulp.task('less', function () {
         .pipe(less({
             paths: [path.join(__dirname, 'less', 'includes')]
         }))
+        .pipe(prefix(["last 2 versions"], { cascade: true }))
         .pipe(gulp.dest('./public/css'));
 });
 
