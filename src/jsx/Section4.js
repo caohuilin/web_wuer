@@ -148,7 +148,7 @@ const Demo = React.createClass({
 const Introduce = React.createClass({
     render(){
         var user = Users[this.props.introduceWho];
-        console.log(this.props.introduceIs);
+        // console.log(this.props.introduceIs);
         //if(!this.props.introduceIs) return null;
         return (
             <div className="introduce slideInLeft animated" style={{left:this.props.position[0]-270,top:this.props.position[1]-20,display:this.props.introduceIs?"block":"none"}}>

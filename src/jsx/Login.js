@@ -11,6 +11,7 @@ const Login = React.createClass({
         Users.map((user, i)=> {
             if (user.id === this.state.id) {
                 console.log("登录成功");
+                document.cookie = "userId:"+user.id;
                 const User = userOnline.child(user.name);
                 loginSuccess = true;
                 User.set(Wilddog.ServerValue.TIMESTAMP);
