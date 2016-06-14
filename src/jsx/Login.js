@@ -39,7 +39,7 @@ const Login = React.createClass({
                         <label>学号:</label>
                         <input type="id" value={this.state.id} className="form-control" onChange={this.handleChange}/>
                     </div>
-                    <button type="submit" className="btn btn-default">Submit</button>
+                    <button type="submit" className="btn btn-default">登录</button>
                 </form>
             </div>
 

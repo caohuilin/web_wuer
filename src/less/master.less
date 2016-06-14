@@ -176,13 +176,13 @@ body {
   }
   .section2{
     width:100%;
-    ul{
-      li{
+    >ul{
+      >li{
         border:solid 1px #e1e1e1;
-        margin:50px 0;
+        margin: 20px 0;
         box-shadow: 0 5px 5px #ddd;
         border-radius: 5px;
-        padding:20px 30px 100px;
+        padding:20px 30px 20px;
         h3{
           font-size: 24px;
           font-weight: 400;
@@ -198,10 +198,15 @@ body {
           line-height: 30px;
           font-size: 16px;
         }
+        .imgList{
+          display: flex;
+          flex-wrap: wrap;
+        }
         img{
           display: block;
           width:300px;
           height: auto;
+          margin: 15px;
         }
       }
     }
