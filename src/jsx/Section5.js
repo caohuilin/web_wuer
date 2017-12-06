@@ -6,6 +6,13 @@ const CommentModule = React.createClass({
     componentWillMount(){
         this.bindAsArray(Comment, "criList")
     },
+    // componentDidMount(){
+    //         $(".comment").emojioneArea({
+    //             pickerPosition: "left",
+    //             filtersPosition: "bottom",
+    //             tonesStyle: "square"
+    //         });
+    // },
     handleChange2(e){
         this.setState({
             cri: e.target.value
@@ -33,7 +40,7 @@ const CommentModule = React.createClass({
                     {list}
                 </ul>
                 <form className="addComment" onSubmit={this.handleSubmit2}>
-                    <textarea value={this.state.cri} onChange={this.handleChange2} className="form-control" rows="1"/>
+                    <textarea className="comment" value={this.state.cri} onChange={this.handleChange2} className="form-control" rows="1"/>
                     <button type="submit" className="btn btn-default">评论</button>
                 </form>
             </div>
@@ -49,6 +56,13 @@ const Section5 = React.createClass({
     },
     componentWillMount(){
         this.bindAsArray(Topical, "topicalList");
+    },
+    componentDidMount(){
+        $("#topical").emojioneArea({
+            pickerPosition: "left",
+            filtersPosition: "bottom",
+            tonesStyle: "square"
+        });
     },
     handleChange1(e){
         this.setState({
@@ -87,9 +101,10 @@ const Section5 = React.createClass({
             <div className="section5">
                 <form className="addTopical" onSubmit={this.handleSubmit1}>
                     <h3>近期有什么好玩的事情,快和小伙伴们一起讨论吧</h3>
-                    <label htmlFor="topicalTheme">主题</label><textarea value={this.state.topicalTheme} onChange={this.handleChange3} className="form-control"
+                    <label htmlFor="topicalTheme">主题</label>
+                    <textarea value={this.state.topicalTheme} onChange={this.handleChange3} className="form-control"
                               rows="1"/>
-                    <textarea value={this.state.topical} onChange={this.handleChange1} className="form-control"
+                    <textarea id="topical"value={this.state.topical} onChange={this.handleChange1} className="form-control"
                               rows="3"/>
                     <button type="submit" className="btn btn-default">发起</button>
                 </form>
